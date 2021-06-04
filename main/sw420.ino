@@ -1,11 +1,11 @@
-int sw420_pin = 3;
+const int SW420_DIGITAL = 5;
 
 void sw420_setup() {
-  pinMode(sw420_pin, OUTPUT);
+  pinMode(SW420_DIGITAL, INPUT);
 }
 
 float sw420_get_vibration() {
-  float vibration = digitalRead(sw420_pin);
+  float vibration = digitalRead(SW420_DIGITAL);
 
   Serial.print(F("Vibration: "));
   Serial.println(vibration);

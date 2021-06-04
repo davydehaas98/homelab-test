@@ -1,10 +1,10 @@
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {
     delay(10); // hang out until serial port opens
   }
-  
-  sw420_setup();
+//  esp6288_setup();
+//  sw420_setup();
 }
 
 void loop() {
@@ -13,7 +13,7 @@ void loop() {
   am2320_get_humidity();
   
 //  mq9_detect_gas();
-  mq135_detect_gas();
+//  mq135_detect_gas();
   
 //  bmp280_begin();
 //  bmp280_get_temperature();

@@ -6,3 +6,5 @@ services:
     restart: unless-stopped
     cpus: 1
     mem_limit: 1G
+    devices:
+    - /dev/gpiomem

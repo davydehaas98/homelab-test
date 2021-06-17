@@ -12,17 +12,15 @@ env:
   TARGET_DIRECTORY: ./docker-compose/homelab
 
 jobs:
-    build:
+  deliver:
     runs-on: ubuntu-latest
-    container:
-      image: python:3.9-alpine
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
-      - name: Publish Docker image
-        run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ${{ env.DOCKER_REGISTRY }} -u ${{ env.DOCKER_USERNAME }} --password-stdin
-          docker build -t ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }} .
-          docker push ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }}
+    - name: Publish Docker image
+      run: |
+        echo "${{ secrets.GITHUB_TOKEN }}" | docker login ${{ env.DOCKER_REGISTRY }} -u ${{ env.DOCKER_USERNAME }} --password-stdin
+        docker build -t ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }} .
+        docker push ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }}

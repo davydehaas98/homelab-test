@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+  homelab:
+    image: ghcr.io/davydehaas98/homelab:main-cbc932f3f267e5dbd4fb1a318d7b904a1f521e71
+    container_name: homelab
+    restart: unless-stopped
+    cpus: 1
+    mem_limit: 1G

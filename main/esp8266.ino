@@ -7,7 +7,7 @@
 //const char password[] = "644649C4FD25";
 //
 //void setup() {
-//  Serial.begin(9600);
+//  Serial.begin(115200);
 //  Serial.print("Connecting to ");
 //  Serial.println(ssid);
 //  WiFi.begin(ssid, password);

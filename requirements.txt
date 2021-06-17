@@ -1,0 +1,1 @@
+adafruit-circuitpython-am2320==1.2.7

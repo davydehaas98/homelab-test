@@ -1,6 +1,6 @@
 FROM arm32v7/python:3.9-buster
 
-RUN apt update && apt install -y python3-dev python3-rpi.gpio
+RUN apt update && apt install -y python3-rpi.gpio
 
 WORKDIR /app
 

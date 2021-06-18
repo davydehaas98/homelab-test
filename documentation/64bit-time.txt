@@ -1,0 +1,31 @@
+https://github.com/dsmrreader/dsmr-reader/issues/1282
+
+Voor de mensen die afvragen wat er met de Alpine images mis is: ze zijn overgestapt naar 64 bits tijd. (Zie https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.13.0#time64_requirements)
+Als je naar een nieuwere versie wil updaten, hierbij wat instructies!
+
+Het probleem is echter dat een tussenlaag waar docker gebruik van maakt (libseccomp2) dit in de standaardversies voor de Raspberry Pi nog niet ondersteunt.
+
+De standaarddistributie voor een Raspberry Pi is op Debian (Buster) gebaseerd, updaten van libseccomp2 naar een nieuwere versie die wel 64-bits tijd ondersteunt gaat dan als volgt.
+
+    De public keys van debian staan niet voorgeinstalleerd met een RPi, deze kun je als volgt installeren:
+
+    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC
+    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138
+
+    Voeg vervolgens de buster-backports repository toe aan apt.
+        Open /etc/apt/sources.list in een tekstverwerker naar keuze:
+
+        sudo nano /etc/apt/sources.list
+
+        Voeg de volgende regel toe aan de onderkant van het bestand:
+
+        deb http://deb.debian.org/debian buster-backports main
+
+    Installeer libseccomp2 via buster-backports
+
+    sudo apt update
+    sudo apt install libseccomp2/buster-backports
+
+Als het goed is zullen alle alpine images nu weer werken (incl. de nieuwe update van DSMR-reader!)
+
+Wat betreft het tijdsverschil: dat verdwijnt als zowel DSMR-reader als de database binnen een Alpine Linux container draaien. Als je postgres:12 (of iets anders) gebruikt, is dit niet het geval.

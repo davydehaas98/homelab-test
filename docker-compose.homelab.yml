@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   homelab:
-    image: ghcr.io/davydehaas98/homelab:main-cbc932f3f267e5dbd4fb1a318d7b904a1f521e71
+    image: ghcr.io/davydehaas98/homelab:main-96af529657a2d1b88b91a960d9717c4850149fa6
     container_name: homelab
     restart: unless-stopped
     cpus: 1

@@ -1,0 +1,4 @@
+sudo raspi-config
+3 (Interface Options - Configure connections to peripherals)
+P5
+enable

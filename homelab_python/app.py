@@ -1,3 +1,4 @@
+import time
 from homelab_python.scripts.am2320 import *
 
 
@@ -6,4 +7,4 @@ def run():
         am2320_temperature()
         am2320_humidity()
 
-        time.sleep(1)
+        time.sleep(10)

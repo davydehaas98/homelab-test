@@ -13,9 +13,11 @@ def am2320_temperature():
     
     print(F"{now} | Temperature: {temperature_c} °C")
     print(F"{now} | Temperature: {temperature_f} °F")
+    time.sleep(2)
 
 
 def am2320_humidity():
     now = time.strftime('%Y-%m-%d %H:%M:%S %Z', time.localtime())
     
     print(F"{now} | Humidity: {am2320.relative_humidity} %")
+    time.sleep(2)

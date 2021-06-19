@@ -11,8 +11,10 @@ def dht22_temperature():
     
     print(F"{now} | Temperature: {temperature_c} °C")
     print(F"{now} | Temperature: {temperature_f} °F")
+    time.sleep(2)
 
 def dht22_humidity():
     now = time.strftime('%Y-%m-%d %H:%M:%S %Z', time.localtime())
     
     print(F"{now} | Humidity: {dht22.relative_humidity} %")
+    time.sleep(2)

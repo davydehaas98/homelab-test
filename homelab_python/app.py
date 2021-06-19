@@ -11,7 +11,10 @@ def run():
 
             dht22_temperature()
             dht22_humidity()
-        except RuntimeError as error:
+        except (RuntimeError, TypeError) as error:
             print(error.args[0])
             continue
+        except Exception as error:
+            print(error.args[0])
+            raise error
         time.sleep(2)

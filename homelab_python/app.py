@@ -17,4 +17,6 @@ def run():
         except Exception as error:
             print(error.args[0])
             raise error
-        time.sleep(2)
+        finally:
+            print("Waiting for 2 seconds...")
+            time.sleep(2)

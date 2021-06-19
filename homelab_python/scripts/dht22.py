@@ -1,9 +1,8 @@
 import time
 import board
-import digitalio
 import adafruit_dht
 
-dht22 = adafruit_dht.DHT22(digitalio.DigitalInOut(board.D7), use_pulseio=False)
+dht22 = adafruit_dht.DHT22(board.D7, use_pulseio=False)
 
 def dht22_temperature():
     now = time.strftime('%Y-%m-%d %H:%M:%S %Z', time.localtime())

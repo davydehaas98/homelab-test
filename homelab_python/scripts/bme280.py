@@ -21,22 +21,18 @@ def bme280_temperature():
     
     print(F"{now} | Temperature: {temperature_c} °C")
     print(F"{now} | Temperature: {temperature_f} °F")
-    time.sleep(2)
 
 def bme280_humidity():
     now = time.strftime('%Y-%m-%d %H:%M:%S %Z', time.localtime())
     
     print(F"{now} | Humidity: {bme280.relative_humidity} %")
-    time.sleep(2)
 
 def bme280_pressure():
     now = time.strftime('%Y-%m-%d %H:%M:%S %Z', time.localtime())
 
     print(F"{now} | Pressure: {bme280.pressure} hPa")
-    time.sleep(2)
 
 def bme280_altitude():
     now = time.strftime('%Y-%m-%d %H:%M:%S %Z', time.localtime())
 
     print(F"{now} | Altitude: {bme280.altitude} meters")
-    time.sleep(2)

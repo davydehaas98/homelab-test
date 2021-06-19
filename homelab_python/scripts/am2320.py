@@ -1,8 +1,9 @@
 import time
 import board
+import busio
 import adafruit_am2320
 
-i2c = board.I2C()  # uses board.SCL and board.SDA
+i2c = busio.I2C(board.SCL, board.SDA) # uses board.SCL and board.SDA
 am2320 = adafruit_am2320.AM2320(i2c);
 
 def am2320_temperature():

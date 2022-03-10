@@ -3,32 +3,36 @@ name: Python push on main branch
 on:
   push:
     branches:
-    - main
+      - main
 
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: false
+  
 env:
   DOCKER_USERNAME: davydehaas98
   DOCKER_REGISTRY: ghcr.io
   DOCKER_IMAGE: davydehaas98/homelab
-  DOCKER_TAG: main-${{ github.sha }}
+  DOCKER_TAG: main-${{ github.run_number }}-${{ github.run_attempt }}
   TARGET_DIRECTORY: ./docker-compose/homelab
 
 jobs:
   deliver:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
     
-    - name: Setup processor emulator QEMU
-      uses: docker/setup-qemu-action@v1
+      - name: Setup processor emulator QEMU
+        uses: docker/setup-qemu-action@v1
 
-    - name: Publish Docker image
-      run: |
-        echo "${{ secrets.GITHUB_TOKEN }}" | docker login ${{ env.DOCKER_REGISTRY }} -u ${{ env.DOCKER_USERNAME }} --password-stdin
-        
-        docker build -t ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }}  .
-        docker push ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }}
+      - name: Publish Docker image
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ${{ env.DOCKER_REGISTRY }} -u ${{ env.DOCKER_USERNAME }} --password-stdin
 
-        docker build -t ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE }}:latest .
-        docker push ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE }}:latest
+          docker build -t ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }}  .
+          docker push ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }}
+
+          docker build -t ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE }}:latest .
+          docker push ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE }}:latest

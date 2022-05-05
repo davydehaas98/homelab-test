@@ -25,7 +25,7 @@ jobs:
           fetch-depth: 0
     
       - name: Setup processor emulator QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
 
       - name: Publish Docker image
         run: |
